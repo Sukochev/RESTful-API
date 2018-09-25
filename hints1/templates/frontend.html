@@ -1,0 +1,103 @@
+{% load staticfiles %}
+{% load static %}
+<!doctype html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'hints1/style.css' %}"> 
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat|Noto+Serif|Nunito|Oswald|Teko" rel="stylesheet"> 
+</head>
+<body>
+
+    <h1>Handy Dev Hints</h1>
+
+<!-- Setting up the individual hints using Python and my HTMLAPIView in views.py -->
+
+    <ul>
+        {% for query in queryset1 %}
+        <li><a href="{% url 'api-hints1:hints-rud' pk=query.pk %}">{{ query }}</a></li>
+        {% endfor %}
+    </ul>
+
+<br/>
+<br/>
+
+<!-- Setting up navigation and pagination in conjunction with HTMLAPIView in views.py -->
+
+    <div class="pagination">
+        <span class="step-links">
+            <center>
+            {% if queryset1.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ queryset1.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            {% if queryset1.has_next %}
+                <a href="?page={{ queryset1.next_page_number }}">Next</a>
+                <a href="?page={{ queryset1.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+            <br/>
+            <br/>
+                <span class="current">
+                    Page {{ queryset1.number }} of {{ queryset1.paginator.num_pages }}
+                </span>
+            </center>
+        </span>
+    </div>
+
+<!-- Setting up the Cat and Dog cards for fun -->
+
+    <div class="card-container">
+        <div class="card">
+            <div class="front">
+                <h2>Internet loves Cats</h2>
+            </div>
+            <div class="back">
+                <h2><img src="{% static 'hints1/cat.jpg' %}" alt=""></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container2">
+        <div class="card">
+            <div class="front">
+                <h2>And Dogs ;)</h2>
+            </div>
+            <div class="back">
+                <h2><img src="{% static 'hints1/dog.jpg' %}" alt=""></h2>
+            </div>
+        </div>
+    </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- Footer - Acknowledgements -->
+    <div class="footer">
+    Background Photo by Jayant Kulkarni from Pexels <br/>
+    Cat Photo by Vadim B from Pexels <br/>
+    Dog Photo by Gilberto Reyes from Pexels 
+    </div>      
+</body>   
+</html>
